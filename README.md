@@ -50,8 +50,8 @@ It provides insight into how solar, wind, hydro, and other renewables have evolv
 
 ```bash
 # Clone the repository
-git clone https://github.com/<your-username>/renewable-energy-insights.git
-cd renewable-energy-insights
+git clone https://github.com/kucukogul/enerlytics.git
+cd enerlytics
 
 # Install dependencies
 pip install -r requirements.txt
