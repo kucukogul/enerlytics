@@ -50,7 +50,7 @@ enerlytics/
 ├── assets/
 │ └── dashboard_preview.png
 ├── data/
-│ └── US_Renewable_Energy_Consumption.csv
+│ └── us_renewable_energy_consumption.csv
 ├── notebooks/
 │ ├── 01_data_cleaning.ipynb
 │ └── 02_analysis.ipynb
