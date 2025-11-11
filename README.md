@@ -26,11 +26,6 @@ The **Renewable Energy Insights Dashboard** is a data analysis project focused o
 
 ---
 
-## 🖼️ Dashboard Preview
-![Dashboard Preview](assets/dashboard_preview.png)
-
----
-
 ## 📊 Features
 
 ✅ Clean and aggregate monthly EIA data into **annual totals**  
@@ -47,8 +42,6 @@ The **Renewable Energy Insights Dashboard** is a data analysis project focused o
 enerlytics/
 ├── app/
 │ └── dashboard.py
-├── assets/
-│ └── dashboard_preview.png
 ├── data/
 │ └── us_renewable_energy_consumption.csv
 ├── notebooks/
