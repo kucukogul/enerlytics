@@ -85,16 +85,14 @@ with tab3:
 with tab4:
     st.header("10-Year Forecast (2025–2034)")
 
-    # Model seçimi (Holt-Winters varsayılan çünkü daha iyi)
     model_type = st.radio(
         "Choose forecasting model:",
         ["Prophet", "Holt-Winters"],
-        index=1  # Holt-Winters öncelikli
+        index=1
     )
 
     if st.button("Run Forecast"):
         with st.spinner(f"Training {model_type} model..."):
-            # Zaman serisi hazırla
             ts_df = df.groupby('Date')['Total_Renewable'].sum().reset_index()
             ts_df.columns = ['ds', 'y']
             ts_df['ds'] = pd.to_datetime(ts_df['ds'])
@@ -108,14 +106,12 @@ with tab4:
                 fig = model.plot(forecast, figsize=(12, 6))
                 st.pyplot(fig)
 
-                # Özet metrikler
                 f2030 = forecast[forecast['ds'].dt.year == 2030]['yhat'].mean()
                 f2034 = forecast[forecast['ds'].dt.year == 2034]['yhat'].mean()
                 st.metric("2030 Forecast", f"{f2030:,.0f} Trillion BTU")
                 st.metric("2034 Forecast", f"{f2034:,.0f} Trillion BTU")
 
-            else:  # Holt-Winters
-                # Modeli eğit
+            else:
                 hw_model = ExponentialSmoothing(
                     ts_df['y'],
                     trend='add',
@@ -123,10 +119,8 @@ with tab4:
                     seasonal_periods=12
                 ).fit()
 
-                # 120 ay = 10 yıl tahmin
                 hw_forecast = hw_model.forecast(steps=120)
 
-                # Gelecek tarihleri oluştur
                 last_date = ts_df['ds'].max()
                 future_dates = pd.date_range(
                     start=last_date + pd.DateOffset(months=1),
@@ -134,7 +128,6 @@ with tab4:
                     freq='MS'
                 )
 
-                # Grafik çiz
                 plt.figure(figsize=(12, 6))
                 plt.plot(ts_df['ds'], ts_df['y'], label='Historical', color='black')
                 plt.plot(future_dates, hw_forecast, label='Holt-Winters Forecast', color='crimson', linestyle='--')
@@ -146,7 +139,6 @@ with tab4:
                 plt.grid(True, alpha=0.3)
                 st.pyplot(plt)
 
-                # Özet metrikler
                 df_hw = pd.DataFrame({'ds': future_dates, 'yhat': hw_forecast})
                 f2030 = df_hw[df_hw['ds'].dt.year == 2030]['yhat'].mean()
                 f2034 = df_hw[df_hw['ds'].dt.year == 2034]['yhat'].mean()
