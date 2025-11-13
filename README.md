@@ -43,11 +43,13 @@ enerlytics/
 ├── app/
 │ └── dashboard.py
 ├── data/
-│ └── us_renewable_energy_consumption.csv
 │ └── cleaned_us_renewable_energy.csv
+│ └── cleaned_us_renewable_energy_no_2024.csv
+│ └── us_renewable_energy_consumption.csv
 ├── notebooks/
 │ └── 01_data_cleaning.ipynb
 │ └── 02_analysis.ipynb
+│ └── 03_forecasting.ipynb
 ├── LICENSE
 ├── README.md
 ```
